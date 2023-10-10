@@ -1,15 +1,15 @@
 const router = require('express').Router();
 const {
-  getStudents,
-  getSingleStudent,
-  createStudent,
-  deleteStudent,
-  addAssignment,
-  removeAssignment,
-} = require('../../controllers/studentController');
-router.route('/').get(getStudents).post(createStudent);
-router.route('/:studentId').get(getSingleStudent).delete(deleteStudent);
-router.route('/:studentId/assignments').post(addAssignment);
-router.route('/:studentId/assignments/:assignmentId').delete(removeAssignment);
+  getUsers,
+  getSingleUser,
+  createUser,
+  deleteUser,
+  addThought,
+  removeThought,
+} = require('../../controllers/userController');
+router.route('/').get(getUsers).post(createUser);
+router.route('/:userId').get(getSingleUser).delete(deleteUser);
+router.route('/:usertId/thoughts').post(addThought);
+router.route('/:userId/thoughts/:thoughtId').delete(removeThought);
 
 module.exports = router;
