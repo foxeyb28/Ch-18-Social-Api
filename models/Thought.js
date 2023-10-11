@@ -1,12 +1,30 @@
 const { Schema, model } = require('mongoose');
 
-const thoughtSchema = new Schema(
-    {
-        _id:{
+const userSchema = new mongoose.Schema({
+    thoughtText: {
+      type: String,
+      required: true,
+      minlength: 1,
+      maxlength: 280,
+    },
+    createdAt: {
+        date: date,
+        default: Date.now,
+        get: (createdAt) => new Date(createdAt).toLocaleString(),
 
-          _id: 'Id',
+    },
+        userName: { 
+
+         type: String,
+         required: true,
         },
-        friends: '',
+        reactionBody: {
+          type: String,
+          required: true,
+          maxLength: 280,
+        }, 
+        reactions: [reactionSchema,]
+
 
     }
 
