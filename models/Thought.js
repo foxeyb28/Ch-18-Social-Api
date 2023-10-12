@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const mongoose = require('mongoose');
+const reactionSchema = require('./Reaction');
 
 const thoughtSchema = new mongoose.Schema({
     thoughtText: {
@@ -9,10 +10,9 @@ const thoughtSchema = new mongoose.Schema({
       maxlength: 280,
     },
     createdAt: {
-        date: Date,
-        default: Date.now,
-        get: (createdAt) => new Date(createdAt).toLocaleString(),
-
+      type: Date,
+      default: Date.now,
+      get: (date) => timeSince(date),
     },
         userName: { 
 
@@ -40,5 +40,4 @@ const thoughtSchema = new mongoose.Schema({
 // Initialize our Post model
 const Thought = mongoose.model('thought', thoughtSchema);
 
-
-    module.exports = thoughtSchema;
+module.exports = Thought;
