@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const thoughtSchema = new mongoose.Schema({
     thoughtText: {
       type: String,
       required: true,
@@ -8,7 +9,7 @@ const userSchema = new mongoose.Schema({
       maxlength: 280,
     },
     createdAt: {
-        date: date,
+        date: Date,
         default: Date.now,
         get: (createdAt) => new Date(createdAt).toLocaleString(),
 
@@ -18,15 +19,26 @@ const userSchema = new mongoose.Schema({
          type: String,
          required: true,
         },
+        
         reactionBody: {
           type: String,
           required: true,
           maxLength: 280,
         }, 
-        reactions: [reactionSchema,]
+        reactions: [reactionSchema]
 
 
     }
+    );
+    thoughtSchema
+  .virtual('reactionCount')
+  // Getter
+  .get(function () {
+    return this.reactions.length;
+  });
 
-);
+// Initialize our Post model
+const Thought = mongoose.model('thought', thoughtSchema);
+
+
     module.exports = thoughtSchema;
